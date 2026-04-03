@@ -3,172 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KZ PREMIUM - High-Speed Tunneling Infrastructure</title>
+    <title>KZ PREMIUM - Global Infrastructure</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@400;600;800&family=Padauk:wght@400;700&display=swap');
         
         :root {
             --primary: #0062ff;
-            --secondary: #00d4ff;
             --bg: #030508;
         }
 
         body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
+            font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif; 
             background-color: var(--bg);
             background-image: radial-gradient(circle at 50% -20%, #1e293b 0%, #030508 80%);
             color: #f8fafc;
             min-height: 100vh;
         }
 
-        .kz-logo { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
+        .kz-logo { font-family: 'Orbitron', sans-serif; }
         
         .premium-card {
-            background: rgba(15, 23, 42, 0.3);
+            background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2.2rem;
+            transition: all 0.3s ease;
         }
 
-        .premium-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 98, 255, 0.15);
+        /* Announcement Ticker */
+        .announcement-bar {
+            background: linear-gradient(90deg, #0062ff1a, #00d4ff1a);
+            border-bottom: 1px solid rgba(0, 98, 255, 0.2);
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
-        .glow-button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: 0 10px 20px -10px var(--primary);
+        .ticker-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+            font-size: 11px;
+            font-weight: 700;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .status-dot {
-            width: 8px; height: 8px; background: #10b981; border-radius: 50%;
-            box-shadow: 0 0 12px #10b981;
+        @keyframes ticker {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .data-row {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0.9rem;
+            padding: 0.65rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
         }
+
+        .label { color: #94a3b8; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; }
+        .value { color: #f1f5f9; font-size: 0.85rem; font-weight: 700; }
+
+        .protocol-badge {
+            background: linear-gradient(135deg, #0062ff, #00d4ff);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 900;
+        }
+
+        .action-btn {
+            background: #0f172a;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .action-btn:hover { background: white; color: black; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .messenger-float { animation: float 3s ease-in-out infinite; }
     </style>
 </head>
-<body class="selection:bg-blue-500 selection:text-white">
+<body>
 
-    <nav class="sticky top-0 z-[100] px-6 py-5 border-b border-white/5 backdrop-blur-xl bg-black/20">
+    <div id="notice-bar" class="announcement-bar">
+        <div id="notice-text" class="ticker-text">Welcome to KZ PREMIUM - Fast & Secure VPN Service!</div>
+    </div>
+
+    <nav class="sticky top-0 z-[100] px-6 py-4 border-b border-white/5 backdrop-blur-xl bg-black/20">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer select-none group" ondblclick="toggleAdmin()">
-                <div class="relative w-14 h-14 bg-black rounded-2xl flex items-center justify-center border border-white/10 group-active:scale-90 transition">
-                    <span class="kz-logo text-white font-black text-2xl">KZ</span>
-                    <div class="absolute -inset-1 bg-blue-500 rounded-2xl blur opacity-20 group-hover:opacity-50 transition"></div>
+            <div class="flex items-center gap-3 cursor-pointer select-none" ondblclick="toggleAdmin()">
+                <div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center">
+                    <span class="kz-logo text-black font-black text-xl">KZ</span>
                 </div>
                 <div>
-                    <h1 class="kz-logo text-xl font-black text-white uppercase">KZ <span class="text-blue-500 italic">PREMIUM</span></h1>
-                    <p class="text-[9px] tracking-[0.3em] font-bold text-blue-400/60 uppercase">Encrypted Infrastructure</p>
+                    <h1 class="kz-logo text-lg font-black text-white">KZ PREMIUM</h1>
+                    <p class="text-[9px] tracking-widest text-blue-500 font-bold uppercase">Global Network</p>
                 </div>
             </div>
-            <div class="hidden md:flex items-center gap-3 bg-white/5 px-5 py-2.5 rounded-full border border-white/10">
-                <div class="status-dot animate-pulse"></div>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Core Active</span>
+            <div class="bg-white/5 px-4 py-2 rounded-full border border-white/10 flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#10b981]"></div>
+                <span class="text-[9px] font-bold text-gray-400 uppercase">System Ready</span>
             </div>
         </div>
     </nav>
 
-    <section id="admin-panel" class="hidden fixed inset-0 z-[150] bg-[#030508]/98 backdrop-blur-3xl p-6 md:p-16 overflow-y-auto">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-black tracking-tighter flex items-center gap-4 text-white">
-                    <i class="fas fa-terminal text-blue-500"></i> ADMIN CONTROL
-                </h2>
-                <button onclick="toggleAdmin()" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-500 transition text-white">
+    <section id="admin-panel" class="hidden fixed inset-0 z-[150] bg-black/95 backdrop-blur-3xl p-6 overflow-y-auto">
+        <div class="container mx-auto max-w-4xl">
+            <div class="flex justify-between items-center mb-8 text-white">
+                <h2 class="text-2xl font-black italic underline decoration-blue-500 underline-offset-8">အက်ဒမင် ထိန်းချုပ်ခန်း</h2>
+                <button onclick="toggleAdmin()" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-500 transition">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-1 premium-card p-8 rounded-[2.5rem] border-t-2 border-blue-500">
-                    <div class="space-y-5">
-                        <input type="text" id="admName" placeholder="Config Name" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 text-sm text-white">
-                        <div class="grid grid-cols-2 gap-4">
-                            <select id="admProto" class="bg-[#0a0f19] border border-white/10 p-4 rounded-2xl text-xs font-bold outline-none text-white">
-                                <option value="UDP">UDP (Gaming)</option>
-                                <option value="VLESS">VLESS (Ultra)</option>
-                                <option value="VMESS">VMESS (Secure)</option>
-                                <option value="SSH">Open SSH</option>
-                            </select>
-                            <select id="admFlag" class="bg-[#0a0f19] border border-white/10 p-4 rounded-2xl text-xs outline-none text-white">
-                                <option value="🇸🇬">Singapore 🇸🇬</option>
-                                <option value="🇹🇭">Thailand 🇹🇭</option>
-                                <option value="🇲🇲">Myanmar 🇲🇲</option>
-                                <option value="🇯🇵">Japan 🇯🇵</option>
-                                <option value="🇺🇸">USA 🇺🇸</option>
-                            </select>
-                        </div>
-                        <textarea id="admKey" rows="5" placeholder="Paste Config Key..." class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl font-mono text-[10px] outline-none focus:border-blue-500 text-white"></textarea>
-                        <button onclick="publishServer()" class="w-full glow-button py-4 rounded-2xl font-black text-white text-xs tracking-widest active:scale-95 transition shadow-lg">DEPLOY SERVER</button>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-2 premium-card p-8 rounded-[2.5rem] border-t-2 border-red-500/50">
-                    <h3 class="text-xs font-black text-gray-500 mb-6 tracking-widest uppercase">Active Infrastructure</h3>
-                    <div id="admin-manage-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto pr-2"></div>
+            <div class="premium-card p-6 mb-8 border border-blue-500/30 bg-blue-600/5">
+                <h3 class="text-xs font-black text-blue-400 mb-4 uppercase tracking-widest italic">သတိပေးချက် စာသားပြင်ရန်</h3>
+                <div class="flex gap-3">
+                    <input type="text" id="admNoticeInput" placeholder="ဥပမာ- ဖိုင်အသစ်များ တင်ပေးထားပါပြီ..." class="flex-1 bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white focus:border-blue-500 outline-none">
+                    <button onclick="updateNotice()" class="bg-blue-600 px-6 rounded-xl font-black text-xs uppercase hover:bg-white hover:text-black transition">Update</button>
                 </div>
             </div>
+
+            <div class="premium-card p-8 mb-10 border-t-4 border-blue-600">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <input type="text" id="admName" placeholder="ဖိုင်အမည်" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white focus:border-blue-500 outline-none">
+                    <select id="admFlag" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white font-bold focus:border-blue-500 outline-none">
+                        <option value="🇸🇬">Singapore 🇸🇬</option>
+                        <option value="🇹🇭">Thailand 🇹🇭</option>
+                        <option value="🇲🇲">Myanmar 🇲🇲</option>
+                        <option value="🇯🇵">Japan 🇯🇵</option>
+                        <option value="🇺🇸">USA 🇺🇸</option>
+                    </select>
+                    <select id="admProto" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white font-bold focus:border-blue-500 outline-none">
+                        <option value="UDP">UDP</option>
+                        <option value="VLESS">VLESS</option>
+                        <option value="VMESS">VMESS</option>
+                        <option value="Open">Open</option>
+                        <option value="SSH">SSH</option>
+                    </select>
+                    <input type="text" id="admIsp" placeholder="အသုံးပြုရန်" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white focus:border-blue-500 outline-none">
+                    <input type="text" id="admUsers" placeholder="အသုံးပြုသူ" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white focus:border-blue-500 outline-none">
+                    <input type="date" id="admExpiry" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white focus:border-blue-500 outline-none">
+                    <input type="text" id="admLimit" placeholder="ကန့်သတ်ချက်" class="bg-white/5 border border-white/10 p-4 rounded-xl text-sm text-white focus:border-blue-500 outline-none">
+                    <select id="admNote" class="bg-blue-900/40 border border-blue-500/50 p-4 rounded-xl text-sm text-white font-bold outline-none">
+                        <option value="V2BOX ဆော့ဝဲနဲ့သုံးပါ">V2BOX ဆော့ဝဲနဲ့သုံးပါ</option>
+                        <option value="NetMod ဆော့ဝဲနဲ့သုံးပါ">NetMod ဆော့ဝဲနဲ့သုံးပါ</option>
+                    </select>
+                </div>
+                <textarea id="admKey" rows="3" placeholder="Config Key ထည့်ပါ..." class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-[10px] font-mono mb-4 text-white focus:border-blue-500 outline-none"></textarea>
+                <button onclick="publishServer()" class="w-full bg-blue-600 py-4 rounded-xl font-black text-sm text-white active:scale-95 transition">ဆာဗာအသစ် လွှင့်တင်မည်</button>
+            </div>
+
+            <div id="admin-manage-list" class="space-y-4"></div>
         </div>
     </section>
 
-    <main class="container mx-auto px-6 py-16">
-        <div class="text-center mb-24">
-            <h2 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white uppercase">
-                Premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400 italic">Network.</span>
-            </h2>
-            <p class="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed tracking-wide">
-                Experience ultra-low latency and top-tier security. Optimized for Gaming and Streaming.
-            </p>
-        </div>
-
-        <div id="server-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+    <main class="container mx-auto px-6 py-12">
+        <div id="server-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
-    <a href="https://m.me/kyawsoe.oo.1292019" target="_blank" class="fixed bottom-10 right-10 z-[200] messenger-float group">
-        <div class="absolute -inset-3 bg-blue-600 rounded-full blur opacity-20 group-hover:opacity-60 transition duration-500"></div>
-        <div class="relative w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl border border-white/20 transition-transform group-hover:scale-110 group-hover:-rotate-12">
-            <i class="fab fa-facebook-messenger text-white text-3xl"></i>
-            <span class="absolute -top-1 -right-1 flex h-5 w-5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-5 w-5 bg-green-500 border-2 border-black"></span>
-            </span>
-        </div>
-        <div class="absolute right-24 top-1/2 -translate-y-1/2 bg-white text-black text-[10px] font-black px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap tracking-tighter shadow-2xl translate-x-4 group-hover:translate-x-0">
-            CONTACT KYAW SOE OO
+    <a href="https://m.me/reik100" target="_blank" class="fixed bottom-8 right-8 z-[200] messenger-float group">
+        <div class="relative w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl transition-transform group-hover:scale-110">
+            <i class="fab fa-facebook-messenger text-white text-2xl"></i>
+            <span class="absolute -top-1 -right-1 h-4 w-4 bg-green-500 border-2 border-black rounded-full"></span>
         </div>
     </a>
 
-    <div id="captchaModal" class="fixed inset-0 bg-black/98 hidden flex items-center justify-center p-6 z-[200] backdrop-blur-3xl">
-        <div class="premium-card p-12 rounded-[3.5rem] w-full max-w-sm text-center relative border-blue-500/30">
-            <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-blue-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-600/40 rotate-12">
-                <i class="fas fa-shield-check text-white text-3xl -rotate-12"></i>
-            </div>
-            <h3 class="text-2xl font-black mb-2 mt-6 text-white uppercase">Verify</h3>
-            <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-10">Accessing High-Speed Key</p>
-            <div id="math-quest" class="text-6xl font-black mb-10 text-white tracking-tighter"></div>
-            <input type="number" id="ansInput" placeholder="?" class="w-full bg-white/5 border-b-2 border-blue-600/50 p-4 text-center text-5xl mb-12 outline-none focus:border-blue-500 font-black text-white">
+    <div id="captchaModal" class="fixed inset-0 bg-black/98 hidden flex items-center justify-center p-6 z-[250] backdrop-blur-2xl">
+        <div class="premium-card p-10 w-full max-w-xs text-center border-white/10">
+            <p class="text-[10px] font-black tracking-widest text-blue-400 mb-6 uppercase">လုံခြုံရေး စစ်ဆေးချက်</p>
+            <div id="math-quest" class="text-5xl font-black mb-8 text-white"></div>
+            <input type="number" id="ansInput" placeholder="အဖြေ" class="w-full bg-transparent border-b-2 border-blue-500 p-2 text-center text-4xl mb-10 text-white outline-none">
             <div class="flex gap-4">
-                <button onclick="closeModal()" class="flex-1 py-4 text-gray-500 font-bold text-[10px] tracking-widest uppercase">Cancel</button>
-                <button onclick="verifyAndCopy()" class="flex-1 glow-button py-4 rounded-2xl font-black text-white text-[10px] tracking-widest active:scale-95 transition">Verify</button>
+                <button onclick="closeModal()" class="flex-1 text-[11px] font-bold text-gray-500 uppercase">ပယ်ဖျက်မည်</button>
+                <button onclick="verifyAndCopy()" class="flex-1 bg-white text-black py-3 rounded-xl font-black text-[11px] uppercase tracking-widest">အတည်ပြုသည်</button>
             </div>
         </div>
     </div>
 
-    <footer class="py-20 text-center opacity-30">
-        <p class="kz-logo text-[10px] font-black tracking-[0.5em] uppercase">KZ INFRASTRUCTURE © 2026</p>
+    <footer class="py-10 text-center opacity-30">
+        <p class="kz-logo text-[9px] font-black tracking-[0.4em] uppercase text-white">KZ INFRASTRUCTURE © 2026</p>
     </footer>
 
     <script>
-        let servers = JSON.parse(localStorage.getItem('kz_premium_vfinal')) || [];
+        let servers = JSON.parse(localStorage.getItem('kz_global_v2')) || [];
+        let globalNotice = localStorage.getItem('kz_notice') || "Welcome to KZ PREMIUM VPN - High Speed Servers Online!";
         let tempKey = ""; let tempAns = 0;
 
         function toggleAdmin() {
@@ -177,63 +204,85 @@
             if(!panel.classList.contains('hidden')) renderAdminManage();
         }
 
+        // Announcement Logic
+        function updateNotice() {
+            const txt = document.getElementById('admNoticeInput').value;
+            if(txt) {
+                globalNotice = txt;
+                localStorage.setItem('kz_notice', txt);
+                applyNotice();
+                alert("သတိပေးချက်စာသား ပြောင်းလဲပြီးပါပြီ!");
+            }
+        }
+
+        function applyNotice() {
+            document.getElementById('notice-text').innerText = globalNotice;
+            document.getElementById('admNoticeInput').value = globalNotice;
+        }
+
         function publishServer() {
             const name = document.getElementById('admName').value;
-            const proto = document.getElementById('admProto').value;
             const flag = document.getElementById('admFlag').value;
+            const proto = document.getElementById('admProto').value;
+            const isp = document.getElementById('admIsp').value;
+            const users = document.getElementById('admUsers').value;
+            const expiry = document.getElementById('admExpiry').value;
+            const limit = document.getElementById('admLimit').value;
+            const note = document.getElementById('admNote').value;
             const key = document.getElementById('admKey').value;
-            if(!name || !key) return alert("Fill all fields.");
-            servers.push({ name, proto, flag, key, id: Date.now() });
+
+            if(!name || !key) return alert("အချက်အလက် ပြည့်စုံစွာ ဖြည့်ပါ။");
+
+            servers.push({ name, flag, proto, isp, users, expiry, limit, note, key, id: Date.now() });
             save();
-            document.getElementById('admName').value = "";
-            document.getElementById('admKey').value = "";
+            ['admName','admIsp','admUsers','admExpiry','admLimit','admKey'].forEach(id => document.getElementById(id).value = "");
             renderAdminManage();
+            alert("တင်ပြီးပါပြီ!");
         }
 
         function renderServers() {
             const list = document.getElementById('server-list');
-            if(servers.length === 0) {
-                list.innerHTML = `<div class="col-span-full text-center py-20 text-gray-800 font-black tracking-widest uppercase text-[10px]">No Infrastructure Online.</div>`;
-                return;
-            }
-            list.innerHTML = servers.map(s => `
-                <div class="premium-card p-10 rounded-[3rem] relative group overflow-hidden">
-                    <div class="flex justify-between items-center mb-10">
-                        <span class="text-6xl drop-shadow-2xl">${s.flag}</span>
-                        <span class="text-[9px] font-black bg-white/5 text-blue-400 px-4 py-2 rounded-xl border border-white/5 tracking-widest uppercase">${s.proto}</span>
+            list.innerHTML = servers.length === 0 ? `<p class="col-span-full text-center text-gray-700 py-20 italic">No files available.</p>` : 
+            servers.map(s => {
+                const daysLeft = Math.ceil((new Date(s.expiry) - new Date()) / (1000 * 60 * 60 * 24));
+                return `
+                <div class="premium-card p-6 shadow-2xl relative border border-white/5 overflow-hidden">
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white/5 rounded-2xl flex items-center justify-center text-2xl border border-white/10 shadow-lg">${s.flag}</div>
+                            <div>
+                                <h3 class="text-sm font-black text-white italic tracking-tight uppercase">${s.name}</h3>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                                    <span class="text-[9px] font-bold text-green-400 uppercase">Online</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="protocol-badge text-white">${s.proto}</span>
                     </div>
-                    <h3 class="text-2xl font-black mb-2 text-white group-hover:text-blue-500 transition-colors uppercase">${s.name}</h3>
-                    <div class="flex items-center gap-3 mb-10">
-                        <div class="status-dot"></div>
-                        <span class="text-[9px] font-bold text-gray-600 tracking-widest uppercase">Verified Stable</span>
+                    <div class="space-y-1 mb-6 relative z-10 text-[11px]">
+                        <div class="data-row"><span class="label">ISP:</span><span class="value text-green-400">${s.isp || '-'}</span></div>
+                        <div class="data-row"><span class="label">Users:</span><span class="value text-blue-400">${s.users || '-'}</span></div>
+                        <div class="data-row"><span class="label">ကျန်ရက်:</span><span class="value text-green-400">${daysLeft > 0 ? daysLeft + ' Days' : 'Expired'}</span></div>
+                        <div class="data-row"><span class="label">Limit:</span><span class="value">${s.limit || '-'}</span></div>
+                        <div class="data-row"><span class="label">မှတ်ချက်:</span><span class="value text-orange-400 italic">${s.note}</span></div>
                     </div>
-                    <button onclick="openCaptcha('${s.key}')" class="w-full py-5 rounded-2xl font-black text-[10px] tracking-widest uppercase bg-white/5 hover:bg-blue-600 hover:text-white transition-all active:scale-95 shadow-xl border border-white/5 hover:border-transparent">
-                        Access Key
-                    </button>
-                </div>
-            `).join('');
+                    <button onclick="openCaptcha('${s.key}')" class="w-full action-btn py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest relative z-10">Get Config</button>
+                </div>`;
+            }).join('');
         }
 
         function renderAdminManage() {
             const list = document.getElementById('admin-manage-list');
             list.innerHTML = servers.map(s => `
-                <div class="flex justify-between items-center bg-white/5 p-5 rounded-[1.8rem] border border-white/5">
-                    <div class="flex items-center gap-4">
-                        <span class="text-2xl">${s.flag}</span>
-                        <div>
-                            <p class="text-[11px] font-black text-white uppercase tracking-tighter">${s.name}</p>
-                            <p class="text-[8px] text-blue-500 font-bold uppercase tracking-widest">${s.proto}</p>
-                        </div>
-                    </div>
-                    <button onclick="deleteServer(${s.id})" class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center">
-                        <i class="fas fa-trash-alt text-xs"></i>
-                    </button>
-                </div>
-            `).join('');
+                <div class="bg-white/5 border border-white/10 p-4 rounded-2xl flex justify-between items-center">
+                    <div class="flex items-center gap-3"><span>${s.flag}</span><div><p class="text-xs font-black text-white uppercase">${s.name}</p></div></div>
+                    <button onclick="deleteServer(${s.id})" class="text-red-500 p-2 hover:bg-red-500/10 rounded-lg transition"><i class="fas fa-trash-alt"></i></button>
+                </div>`).join('');
         }
 
         function deleteServer(id) {
-            if(confirm('Terminate?')) {
+            if(confirm('ဖျက်ရန် သေချာပါသလား?')) {
                 servers = servers.filter(s => s.id !== id);
                 save();
                 renderAdminManage();
@@ -241,7 +290,7 @@
         }
 
         function save() {
-            localStorage.setItem('kz_premium_vfinal', JSON.stringify(servers));
+            localStorage.setItem('kz_global_v2', JSON.stringify(servers));
             renderServers();
         }
 
@@ -253,19 +302,18 @@
             document.getElementById('captchaModal').classList.remove('hidden');
         }
 
-        function closeModal() { 
-            document.getElementById('captchaModal').classList.add('hidden'); 
-            document.getElementById('ansInput').value = ""; 
-        }
+        function closeModal() { document.getElementById('captchaModal').classList.add('hidden'); }
 
         function verifyAndCopy() {
             if(parseInt(document.getElementById('ansInput').value) === tempAns) {
                 navigator.clipboard.writeText(tempKey);
-                alert("Copied to Clipboard.");
+                alert("Config copied successfully!");
                 closeModal();
-            } else { alert("Wrong."); }
+            } else { alert("အဖြေမှားနေပါသည်။"); }
         }
 
+        // Initialize
+        applyNotice();
         renderServers();
     </script>
 </body>
